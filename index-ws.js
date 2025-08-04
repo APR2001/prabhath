@@ -13,7 +13,10 @@ server.listen(3000, function () {
 });
 
 // Add keyboard input handler to show database on demand
-process.stdin.setRawMode(true);
+if (process.stdin.isTTY) {
+  process.stdin.setRawMode(true);
+}
+
 process.stdin.resume();
 process.stdin.on("data", (key) => {
   // 'd' key to show database contents
